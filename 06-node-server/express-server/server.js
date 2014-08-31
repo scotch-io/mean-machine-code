@@ -3,13 +3,13 @@ var express = require('express');
 var app     = express();
 
 // set the port based on environment (more on environments later)
-var port    = process.env.PORT || 8080; 
+var port    = 1337; 
 
 // send our index.html file to the user for the home page
-app.get(function(req, res) {
-	res.sendfile(__dirname + '/index.html');
+app.get('/', function(req, res) {
+	res.sendFile(__dirname + '/index.html');
 });
 
 // start the server
-app.listen(port);
-console.log(port + ' is the magic port!');
+app.listen(1337);
+console.log('1337 is the magic port!');
