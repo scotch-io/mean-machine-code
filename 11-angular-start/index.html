@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>My First Angular Application!</title>
+
+	<!-- CSS -->
+	<!-- load bootstrap and our stylesheet -->
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+	<style>
+		body { padding-top:50px; }
+	</style>
+
+	<!-- JS -->
+	<!-- load angular and our custom application -->
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
+	<script src="js/app.js"></script>
+</head>
+
+<!-- declare our angular application and angular controller -->
+<body ng-app="firstApp" ng-controller="mainController" class="container">
+
+<div class="jumbotron">
+
+	<!-- form to update the message variable using ng-model -->
+	<div class="form-group">
+		<label>Message</label>
+		<input type="text" class="form-control" ng-model="message">
+	</div>
+
+	<!-- display the message -->
+	<h2>This is my message:</h2>
+	{{ message }}
+
+	<!-- display the list using ng-repeat -->
+	<h2>This is my list:</h2>
+	<table class="table table-bordered">
+		<thead>
+			<tr>
+				<td>Name</td>
+				<td>Color</td>
+				<td>Nerd Level</td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="computer in computers">
+				<td>{{ computer.name }}</td>
+				<td>{{ computer.color }}</td>
+				<td>{{ computer.nerdness }}</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+	
+</body>
+</html>
