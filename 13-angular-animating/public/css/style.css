@@ -1,91 +1,15 @@
 body 		{ padding-top:50px; }
-nav 		{ z-index:999999; }
 
-#content-views 						{ display:block; position:relative;
-	transition:0.3s ease all; -moz-transition:0.3s ease all; -webkit-transition:0.3s ease all;
-}
+#content-views 				  { position:relative; }
 
 .ng-enter, .ng-leave 		{ width:100%; position:absolute; }
-.ng-enter 					{ z-index:8888; 
-	-webkit-animation:zoomInDown 1.2s both ease-in; 
+.ng-enter 					    { 
+  -webkit-animation:zoomInDown 1.2s both ease-in; 
+  -moz-animation:zoomInDown 1.2s both ease-in; 
+	animation:zoomInDown 1.2s both ease-in; 
 }
-.ng-leave 					{ z-index:9999; 
-	-webkit-animation:zoomOutDown 0.5s both ease-in; 
-}
-
-/* slide out to the left */
-@-webkit-keyframes zoomInDown {
-  0% {
-    opacity: 0;
-    -webkit-transform: scale3d(.1, .1, .1) translate3d(0, -1000px, 0);
-            transform: scale3d(.1, .1, .1) translate3d(0, -1000px, 0);
-    -webkit-animation-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190);
-            animation-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190);
-  }
-
-  60% {
-    opacity: 1;
-    -webkit-transform: scale3d(.475, .475, .475) translate3d(0, 60px, 0);
-            transform: scale3d(.475, .475, .475) translate3d(0, 60px, 0);
-    -webkit-animation-timing-function: cubic-bezier(0.175, 0.885, 0.320, 1);
-            animation-timing-function: cubic-bezier(0.175, 0.885, 0.320, 1);
-  }
-}
-
-@keyframes zoomInDown {
-  0% {
-    opacity: 0;
-    -webkit-transform: scale3d(.1, .1, .1) translate3d(0, -1000px, 0);
-            transform: scale3d(.1, .1, .1) translate3d(0, -1000px, 0);
-    -webkit-animation-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190);
-            animation-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190);
-  }
-
-  60% {
-    opacity: 1;
-    -webkit-transform: scale3d(.475, .475, .475) translate3d(0, 60px, 0);
-            transform: scale3d(.475, .475, .475) translate3d(0, 60px, 0);
-    -webkit-animation-timing-function: cubic-bezier(0.175, 0.885, 0.320, 1);
-            animation-timing-function: cubic-bezier(0.175, 0.885, 0.320, 1);
-  }
-}
-
-@-webkit-keyframes zoomOutDown {
-  40% {
-    opacity: 1;
-    -webkit-transform: scale3d(.475, .475, .475) translate3d(0, -60px, 0);
-            transform: scale3d(.475, .475, .475) translate3d(0, -60px, 0);
-    -webkit-animation-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190);
-            animation-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190);
-  }
-
-  100% {
-    opacity: 0;
-    -webkit-transform: scale3d(.1, .1, .1) translate3d(0, 2000px, 0);
-            transform: scale3d(.1, .1, .1) translate3d(0, 2000px, 0);
-    -webkit-transform-origin: center bottom;
-            transform-origin: center bottom;
-    -webkit-animation-timing-function: cubic-bezier(0.175, 0.885, 0.320, 1);
-            animation-timing-function: cubic-bezier(0.175, 0.885, 0.320, 1);
-  }
-}
-
-@keyframes zoomOutDown {
-  40% {
-    opacity: 1;
-    -webkit-transform: scale3d(.475, .475, .475) translate3d(0, -60px, 0);
-            transform: scale3d(.475, .475, .475) translate3d(0, -60px, 0);
-    -webkit-animation-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190);
-            animation-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190);
-  }
-
-  100% {
-    opacity: 0;
-    -webkit-transform: scale3d(.1, .1, .1) translate3d(0, 2000px, 0);
-            transform: scale3d(.1, .1, .1) translate3d(0, 2000px, 0);
-    -webkit-transform-origin: center bottom;
-            transform-origin: center bottom;
-    -webkit-animation-timing-function: cubic-bezier(0.175, 0.885, 0.320, 1);
-            animation-timing-function: cubic-bezier(0.175, 0.885, 0.320, 1);
-  }
+.ng-leave 					    { 
+  -webkit-animation:zoomOutDown 0.5s both ease-in; 
+  -moz-animation:zoomOutDown 0.5s both ease-in; 
+	animation:zoomOutDown 0.5s both ease-in; 
 }
