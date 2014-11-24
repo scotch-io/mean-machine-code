@@ -1,21 +1,25 @@
 // BASE SETUP
 // =============================================================================
 
-// call the packages we need
+// CALL THE PACKAGES
 var express    = require('express');		// call express
 var app        = express(); 				// define our app using express
 var bodyParser = require('body-parser'); 	// get body-parser
 var morgan 	   = require('morgan'); 		// used to see requests
 
-// configure app
+// APP CONFIGURATION
+
+// use body parser so we can grab information from POST requests
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(morgan('dev')); 		// log all requests to the console
 
-var port     = process.env.PORT || 8080; // set our port
+// log all requests to the console 
+app.use(morgan('dev'));
+
+var port     = process.env.PORT || 8080; // set the port for our app
 
 // get mongoose
-// connect to our database
+// connect to our database (hosted on modulus.io)
 // grab out User model
 var mongoose   = require('mongoose');
 mongoose.connect('mongodb://node:noder@novus.modulusmongo.net:27017/Iganiq8o'); 
@@ -24,8 +28,15 @@ var User     = require('./app/models/user');
 // ROUTES FOR OUR API
 // =============================================================================
 
-// // get an instance of the express router
+// get an instance of the express router
 var router = express.Router();
+
+// middleware to use for all requests
+router.use(function(req, res, next) {
+	// do logging
+	console.log(req.method, req.url);
+	next(); // make sure we go to the next routes and don't stop here
+});
 
 // test route to make sure everything is working 
 // accessed at GET http://localhost:8080/api
@@ -50,7 +61,6 @@ router.route('/users')
 			res.json({ message: 'User created!' });
 		});
 
-		
 	})
 
 	// get all the users (accessed at GET http://localhost:8080/api/users)
