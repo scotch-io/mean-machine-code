@@ -24,11 +24,15 @@ mongoose.connect('mongodb://node:noder@novus.modulusmongo.net:27017/Iganiq8o');
 // ROUTES FOR OUR API
 // ======================================
 
+app.get('/', function(req, res) {
+	res.send('Welcome to the home page!');
+});
+
 // get an instance of the express router
-var router = express.Router();
+var apiRouter = express.Router();
 
 // middleware to use for all requests
-router.use(function(req, res, next) {
+apiRouter.use(function(req, res, next) {
 	// do logging
 	console.log('Somebody just came to our app!');
 
@@ -37,13 +41,13 @@ router.use(function(req, res, next) {
 
 // test route to make sure everything is working 
 // accessed at GET http://localhost:8080/api
-router.get('/', function(req, res) {
+apiRouter.get('/', function(req, res) {
 	res.json({ message: 'hooray! welcome to our api!' });	
 });
 
 // on routes that end in /users
 // ----------------------------------------------------
-router.route('/users')
+apiRouter.route('/users')
 
 	// create a user (accessed at POST http://localhost:8080/users)
 	.post(function(req, res) {
@@ -74,7 +78,7 @@ router.route('/users')
 
 // on routes that end in /users/:user_id
 // ----------------------------------------------------
-router.route('/users/:user_id')
+apiRouter.route('/users/:user_id')
 
 	// get the user with that id
 	.get(function(req, res) {
@@ -97,6 +101,7 @@ router.route('/users/:user_id')
 			if (req.body.username) user.username = req.body.username;
 			if (req.body.password) user.password = req.body.password;
 
+			// save the user
 			user.save(function(err) {
 				if (err) res.send(err);
 
@@ -119,8 +124,9 @@ router.route('/users/:user_id')
 	});
 
 
+
 // REGISTER OUR ROUTES -------------------------------
-app.use('/api', router);
+app.use('/api', apiRouter);
 
 // START THE SERVER
 // =============================================================================

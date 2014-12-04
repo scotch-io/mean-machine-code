@@ -28,10 +28,9 @@ UserSchema.pre('save', function(next) {
 
 // method to compare a given password with the database hash
 UserSchema.methods.comparePassword = function(password) {
-	bcrypt.compare(password, hash, function(err, res) {
-		// will return true if the passwords match
-		return res;
-	});
+	var user = this;
+
+	return bcrypt.compareSync(password, user.password);
 };
 
 module.exports = mongoose.model('User', UserSchema);
