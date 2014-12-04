@@ -32,6 +32,11 @@ app.get('/', function(req, res) {
 // get an instance of the express router
 var apiRouter = express.Router();
 
+apiRouter.post('/authenticate', function(req, res) {
+	// authentication goes here
+
+});
+
 // middleware to use for all requests
 apiRouter.use(function(req, res, next) {
 	// do logging
