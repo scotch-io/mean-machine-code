@@ -6,6 +6,6 @@
     "express": "~4.10.3",
     "body-parser": "~1.9.3",
     "mongoose": "~3.8.19",
-    "bcrypt-nodejs": "0.0.3"
+    "jsonwebtoken": "~1.2.0"
   }
 }

@@ -1,16 +1,14 @@
 // BASE SETUP
-// ======================================
+// =============================================================================
 
-// CALL THE PACKAGES --------------------
+// CALL THE PACKAGES
 var express    = require('express');		// call express
 var app        = express(); 				// define our app using express
 var bodyParser = require('body-parser'); 	// get body-parser
-var morgan     = require('morgan'); 		// used to see requests
-var mongoose   = require('mongoose');
-var User       = require('./app/models/user');
-var port       = process.env.PORT || 8080; // set the port for our app
+var morgan 	   = require('morgan'); 		// used to see requests
 
-// APP CONFIGURATION ---------------------
+// APP CONFIGURATION
+
 // use body parser so we can grab information from POST requests
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -18,11 +16,17 @@ app.use(bodyParser.json());
 // log all requests to the console 
 app.use(morgan('dev'));
 
+var port     = process.env.PORT || 8080; // set the port for our app
+
+// get mongoose
 // connect to our database (hosted on modulus.io)
+// grab out User model
+var mongoose   = require('mongoose');
 mongoose.connect('mongodb://node:noder@novus.modulusmongo.net:27017/Iganiq8o'); 
+var User     = require('./app/models/user');
 
 // ROUTES FOR OUR API
-// ======================================
+// =============================================================================
 
 // get an instance of the express router
 var router = express.Router();
@@ -30,8 +34,7 @@ var router = express.Router();
 // middleware to use for all requests
 router.use(function(req, res, next) {
 	// do logging
-	console.log('Somebody just came to our app!');
-
+	console.log(req.method, req.url);
 	next(); // make sure we go to the next routes and don't stop here
 });
 
@@ -50,13 +53,11 @@ router.route('/users')
 		
 		var user = new User();		// create a new instance of the User model
 		user.name = req.body.name;  // set the users name (comes from the request)
-		user.username = req.body.username;  // set the users username (comes from the request)
-		user.password = req.body.password;  // set the users password (comes from the request)
 
 		user.save(function(err) {
-			if (err) res.send(err);
+			if (err)
+				res.send(err);
 
-			// return a message
 			res.json({ message: 'User created!' });
 		});
 
@@ -65,9 +66,9 @@ router.route('/users')
 	// get all the users (accessed at GET http://localhost:8080/api/users)
 	.get(function(req, res) {
 		User.find(function(err, users) {
-			if (err) res.send(err);
+			if (err)
+				res.send(err);
 
-			// return the users
 			res.json(users);
 		});
 	});
@@ -79,9 +80,8 @@ router.route('/users/:user_id')
 	// get the user with that id
 	.get(function(req, res) {
 		User.findById(req.params.user_id, function(err, user) {
-			if (err) res.send(err);
-
-			// return that user
+			if (err)
+				res.send(err);
 			res.json(user);
 		});
 	})
@@ -90,17 +90,14 @@ router.route('/users/:user_id')
 	.put(function(req, res) {
 		User.findById(req.params.user_id, function(err, user) {
 
-			if (err) res.send(err);
+			if (err)
+				res.send(err);
 
-			// set the new user information if it exists in the request
-			if (req.body.name) user.name = req.body.name;
-			if (req.body.username) user.username = req.body.username;
-			if (req.body.password) user.password = req.body.password;
-
+			user.name = req.body.name;
 			user.save(function(err) {
-				if (err) res.send(err);
+				if (err)
+					res.send(err);
 
-				// return a message
 				res.json({ message: 'User updated!' });
 			});
 
@@ -112,7 +109,8 @@ router.route('/users/:user_id')
 		User.remove({
 			_id: req.params.user_id
 		}, function(err, user) {
-			if (err) res.send(err);
+			if (err)
+				res.send(err);
 
 			res.json({ message: 'Successfully deleted' });
 		});
