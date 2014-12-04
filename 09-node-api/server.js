@@ -24,6 +24,7 @@ mongoose.connect('mongodb://node:noder@novus.modulusmongo.net:27017/Iganiq8o');
 // ROUTES FOR OUR API
 // ======================================
 
+// basic route for the home page
 app.get('/', function(req, res) {
 	res.send('Welcome to the home page!');
 });
