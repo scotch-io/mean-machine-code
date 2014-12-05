@@ -9,6 +9,10 @@ var morgan     = require('morgan'); 		// used to see requests
 var mongoose   = require('mongoose');
 var User       = require('./app/models/user');
 var port       = process.env.PORT || 8080; // set the port for our app
+var jwt 	   = require('jsonwebtoken');
+
+// super secret for creating tokens
+var superSecret = 'ilovescotchscotchyscotchscotch';
 
 // APP CONFIGURATION ---------------------
 // use body parser so we can grab information from POST requests
@@ -33,7 +37,7 @@ app.get('/', function(req, res) {
 var apiRouter = express.Router();
 
 // route to authenticate a user (POST http://localhost:8080/api/authenticate)
-apiRoutes.post('/authenticate', function(req, res) {
+apiRouter.post('/authenticate', function(req, res) {
 
   // find the user
   User.findOne({
@@ -55,7 +59,7 @@ apiRoutes.post('/authenticate', function(req, res) {
 
         // if user is found and password is right
         // create a token
-        var token = jwt.sign(user, app.get('superSecret'), {
+        var token = jwt.sign(user, superSecret, {
           expiresInMinutes: 1440 // expires in 24 hours
         });
 
@@ -73,7 +77,7 @@ apiRoutes.post('/authenticate', function(req, res) {
 });
 
 // route middleware to verify a token
-apiRoutes.use(function(req, res, next) {
+apiRouter.use(function(req, res, next) {
 	// do logging
 	console.log('Somebody just came to our app!');
 
@@ -84,7 +88,7 @@ apiRoutes.use(function(req, res, next) {
   if (token) {
 
     // verifies secret and checks exp
-    jwt.verify(token, app.get('superSecret'), function(err, decoded) {      
+    jwt.verify(token, superSecret, function(err, decoded) {      
       if (err)
         return res.json({ success: false, message: 'Failed to authenticate token.' });    
       else
@@ -101,7 +105,6 @@ apiRoutes.use(function(req, res, next) {
   }
 
   next(); // make sure we go to the next routes and don't stop here
-  next();
 });
 
 // test route to make sure everything is working 
