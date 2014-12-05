@@ -34,7 +34,18 @@ var apiRouter = express.Router();
 
 apiRouter.post('/authenticate', function(req, res) {
 	// authentication goes here
+	// find the user by their username
+	User.find({ username: req.body.username }, function(err, user) {
+		if (err) res.send(err);
+		
+		// validate their password
+		var validPassword = user.comparePassword(req.body.password);
 
+		// if the password is valid, generate a token
+		if (validPassword)
+
+			// return as JSON
+	});
 });
 
 // middleware to use for all requests
