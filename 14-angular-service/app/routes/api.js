@@ -1,18 +1,14 @@
-var expres = require('express');
 var bodyParser = require('body-parser'); 	// get body-parser
-var User       = require('./app/models/user');
-var jwt 	   = require('jsonwebtoken');
+var User       = require('../models/user');
+var jwt        = require('jsonwebtoken');
 
 // super secret for creating tokens
 var superSecret = 'ilovescotchscotchyscotchscotch';
 
 module.exports = function(app) {
-	
-	// get an instance of the express router
-	var apiRouter = express.Router();
 
 	// route to authenticate a user (POST http://localhost:8080/api/authenticate)
-	apiRouter.post('/authenticate', function(req, res) {
+	app.post('/authenticate', function(req, res) {
 
 	  // find the user
 	  User.findOne({
@@ -52,7 +48,7 @@ module.exports = function(app) {
 	});
 
 	// route middleware to verify a token
-	apiRouter.use(function(req, res, next) {
+	app.use(function(req, res, next) {
 		// do logging
 		console.log('Somebody just came to our app!');
 
@@ -84,13 +80,13 @@ module.exports = function(app) {
 
 	// test route to make sure everything is working 
 	// accessed at GET http://localhost:8080/api
-	apiRouter.get('/', function(req, res) {
+	app.get('/', function(req, res) {
 		res.json({ message: 'hooray! welcome to our api!' });	
 	});
 
 	// on routes that end in /users
 	// ----------------------------------------------------
-	apiRouter.route('/users')
+	app.route('/users')
 
 		// create a user (accessed at POST http://localhost:8080/users)
 		.post(function(req, res) {
@@ -121,7 +117,7 @@ module.exports = function(app) {
 
 	// on routes that end in /users/:user_id
 	// ----------------------------------------------------
-	apiRouter.route('/users/:user_id')
+	app.route('/users/:user_id')
 
 		// get the user with that id
 		.get(function(req, res) {

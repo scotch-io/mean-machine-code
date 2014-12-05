@@ -5,6 +5,7 @@
 // CALL THE PACKAGES --------------------
 var express    = require('express');	// call express
 var app        = express(); 			// define our app using express
+var bodyParser = require('body-parser'); 
 var morgan     = require('morgan'); 	// used to see requests
 var mongoose   = require('mongoose');
 var port       = process.env.PORT || 8080; // set the port for our app
