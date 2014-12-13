@@ -22,6 +22,9 @@ app.use(morgan('dev'));
 // connect to our database (hosted on modulus.io)
 mongoose.connect(config.database); 
 
+// set static files location
+app.use(express.static(__dirname + '/public'));
+
 // ===================================
 // APPLICATION ROUTES ================
 // ===================================
@@ -30,7 +33,7 @@ mongoose.connect(config.database);
 require('./app/routes/app')(app);
 
 // API ROUTES ------------------------
-var apiRoutes = require('./app/routes/api')(app);
+var apiRoutes = require('./app/routes/api')(app, express);
 app.use('/api', apiRoutes);
 
 // START THE SERVER

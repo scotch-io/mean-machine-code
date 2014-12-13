@@ -5,10 +5,12 @@ var jwt        = require('jsonwebtoken');
 // super secret for creating tokens
 var superSecret = 'ilovescotchscotchyscotchscotch';
 
-module.exports = function(app) {
+module.exports = function(app, express) {
+
+	var apiRouter = express.Router();
 
 	// route to authenticate a user (POST http://localhost:8080/api/authenticate)
-	app.post('/authenticate', function(req, res) {
+	apiRouter.post('/authenticate', function(req, res) {
 
 	  // find the user
 	  User.findOne({
@@ -48,7 +50,7 @@ module.exports = function(app) {
 	});
 
 	// route middleware to verify a token
-	app.use(function(req, res, next) {
+	apiRouter.use(function(req, res, next) {
 		// do logging
 		console.log('Somebody just came to our app!');
 
@@ -80,13 +82,13 @@ module.exports = function(app) {
 
 	// test route to make sure everything is working 
 	// accessed at GET http://localhost:8080/api
-	app.get('/', function(req, res) {
+	apiRouter.get('/', function(req, res) {
 		res.json({ message: 'hooray! welcome to our api!' });	
 	});
 
 	// on routes that end in /users
 	// ----------------------------------------------------
-	app.route('/users')
+	apiRouter.route('/users')
 
 		// create a user (accessed at POST http://localhost:8080/users)
 		.post(function(req, res) {
@@ -117,7 +119,7 @@ module.exports = function(app) {
 
 	// on routes that end in /users/:user_id
 	// ----------------------------------------------------
-	app.route('/users/:user_id')
+	apiRouter.route('/users/:user_id')
 
 		// get the user with that id
 		.get(function(req, res) {
@@ -161,4 +163,6 @@ module.exports = function(app) {
 				res.json({ message: 'Successfully deleted' });
 			});
 		});
+
+	return apiRouter;
 };

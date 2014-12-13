@@ -1,0 +1,1 @@
+angular.module('userApp', ['ngAnimate', 'userRoutes', 'userController', 'userService']);
