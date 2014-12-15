@@ -4,20 +4,18 @@ angular.module('userRoutes', ['ngRoute'])
 .config(function($routeProvider, $locationProvider) {
     $routeProvider
 
-        // route for the home page
-        .when('/', {
-            templateUrl : 'views/pages/home.html'
+        // route to list all users
+        .when('/users', {
+            templateUrl : 'views/pages/users/list.html',
+            controller: 'userCtrl'
         })
 
-        // route for the about page
-        .when('/about', {
-            templateUrl : 'views/pages/about.html'
-        })
-
-        // route for the contact page
-        .when('/contact', {
-            templateUrl : 'views/pages/contact.html'
+        // route for the new user page
+        .when('/users/new', {
+            templateUrl : 'views/pages/users/new.html',
+            controller: 'userCtrl'
         });
 
+    // turn on html5Mode to clean up the URL (remove the #)
     $locationProvider.html5Mode(true);
 });
