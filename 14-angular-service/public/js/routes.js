@@ -1,8 +1,20 @@
-angular.module('userRoutes', ['ngRoute'])
+angular.module('appRoutes', ['ngRoute'])
 
 // configure our routes
 .config(function($routeProvider, $locationProvider) {
     $routeProvider
+
+        // route for the home page
+        .when('/', {
+            templateUrl : 'views/pages/home.html',
+            controller: 'appCtrl'
+        })
+
+        // login page
+        .when('/login', {
+            templateUrl : 'views/pages/login.html',
+            controller: 'appCtrl'
+        })
 
         // route to list all users
         .when('/users', {

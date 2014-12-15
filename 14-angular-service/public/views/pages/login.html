@@ -5,14 +5,14 @@
 				<h1>Login</h1>
 			</div>
 
-			<form>
+			<form ng-submit="login()">
 				<div class="form-group">
 					<label for="username">Username</label>
-					<input type="text" class="form-control" placeholder="yourname">
+					<input type="text" class="form-control" placeholder="yourname" ng-model="username">
 				</div>
 				<div class="form-group">
 					<label for="password">Password</label>
-					<input type="password" class="form-control" placeholder="supersecret">
+					<input type="password" class="form-control" placeholder="supersecret" ng-model="password">
 				</div>
 			
 				<button type="submit" class="btn btn-block btn-primary btn-lg">Login</button>
