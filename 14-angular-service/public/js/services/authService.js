@@ -1,4 +1,4 @@
-angular.module('authService', [])
+angular.module('authService', ['ngCookies'])
 
 .factory('Auth', function($http, $cookieStore) {
 
