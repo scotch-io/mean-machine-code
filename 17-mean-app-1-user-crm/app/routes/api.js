@@ -1,9 +1,10 @@
 var bodyParser = require('body-parser'); 	// get body-parser
 var User       = require('../models/user');
 var jwt        = require('jsonwebtoken');
+var config     = require('../../config');
 
 // super secret for creating tokens
-var superSecret = 'ilovescotchscotchyscotchscotch';
+var superSecret = config.secret;
 
 module.exports = function(app, express) {
 
@@ -74,7 +75,7 @@ module.exports = function(app, express) {
 
 	    // if there is no token
 	    // return an HTTP response of 403 (access forbidden) and an error message
-		return res.status(403).send({ success: false, message: 'No token provided.' });
+   	 	return res.status(403).send({ success: false, message: 'No token provided.' });
 	    
 	  }
 

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>My MEAN App</title>
+
+	<!-- CSS  -->
+	<!-- load bootstrap from CDN and custom CSS -->
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootswatch/3.3.1/simplex/bootstrap.min.css">
+	<link rel="stylesheet" href="assets/css/style.css">
+
+	<!-- JS -->
+	<!-- load angular and angular-route via CDN -->
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.28/angular.min.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.28/angular-route.js"></script>
+
+	<!-- controllers -->
+	<script src="app/controllers/mainCtrl.js"></script>
+	<script src="app/controllers/loginCtrl.js"></script>
+
+	<!-- services -->
+	<script src="app/services/authService.js"></script>
+
+	<!-- main Angular app files -->
+	<script src="app/app-routes.js"></script>
+	<script src="app/app.js"></script>
+</head>
+<body class="container" ng-app="userApp" ng-controller="mainController as main">
+	
+	<div class="navbar navbar-default">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<a href="#" class="navbar-brand"><span class="glyphicon glyphicon-fire text-danger"></span> User CRM</a>
+		</div>
+		<ul class="nav navbar-nav navbar-right">
+			<li><a href="#login">Login</a></li>
+			<li><a href="#logout">Logout</a></li>
+		</ul>
+	</div>
+	</div>
+
+	<div ng-view></div>
+
+</body>
+</html>
