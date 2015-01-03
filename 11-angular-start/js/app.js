@@ -16,4 +16,20 @@ angular.module('firstApp', [])
 		{ name: 'Chromebook', color: 'Black', nerdness: 5 }
 	];
 
+	// information that comes from our form
+    this.computerData = {};
+
+    this.addComputer = function() {
+        
+        // add a computer to the list
+        this.computers.push({
+            name: this.computerData.name,
+            color: this.computerData.color,
+            nerdness: this.computerData.nerdness
+        });
+
+        // after our computer has been added, clear the form
+        this.computerData = {};
+    };
+
 });
