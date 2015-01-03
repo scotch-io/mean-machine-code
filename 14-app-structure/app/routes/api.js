@@ -74,8 +74,8 @@ module.exports = function(app, express) {
 	  } else {
 
 	    // if there is no token
-	    // return an error
-	    return res.json({ success: false, message: 'No token provided.' });
+	    // return an HTTP response of 403 (access forbidden) and an error message
+   	 	return res.status(403).send({ success: false, message: 'No token provided.' });
 	    
 	  }
 

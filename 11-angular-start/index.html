@@ -18,19 +18,19 @@
 </head>
 
 <!-- declare our angular application and angular controller -->
-<body class="container" ng-app="firstApp" ng-controller="mainController">
+<body class="container" ng-app="firstApp" ng-controller="mainController as main">
 
 <div class="jumbotron">
 
 	<!-- form to update the message variable using ng-model -->
 	<div class="form-group">
 		<label>Message</label>
-		<input type="text" class="form-control" ng-model="message">
+		<input type="text" class="form-control" ng-model="main.message">
 	</div>
 
 	<!-- display the message -->
 	<h2>This is my message:</h2>
-	{{ message }}
+	{{ main.message }}
 
 	<!-- display the list using ng-repeat -->
 	<h2>This is my list:</h2>
@@ -43,7 +43,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr ng-repeat="computer in computers">
+			<tr ng-repeat="computer in main.computers">
 				<td>{{ computer.name }}</td>
 				<td>{{ computer.color }}</td>
 				<td>{{ computer.nerdness }}</td>

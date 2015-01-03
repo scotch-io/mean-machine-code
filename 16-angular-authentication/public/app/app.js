@@ -10,7 +10,7 @@ angular.module('userApp', ['mainCtrl', 'authService'])
 
 		Auth.login($scope.username, $scope.password)
 			.then(function(data) {
-        console.log(data);
+       			console.log(data);
 				console.log('what');
 			});
 	};

@@ -19,6 +19,14 @@ var superSecret = 'ilovescotchscotchyscotchscotch';
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+// configure our app to handle CORS requests
+app.use(function(req, res, next) {
+	res.setHeader('Access-Control-Allow-Origin', '*');
+	res.setHeader('Access-Control-Allow-Methods', 'GET, POST');
+	res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type, Authorization');
+	next();
+});
+
 // log all requests to the console 
 app.use(morgan('dev'));
 
@@ -99,8 +107,8 @@ apiRouter.use(function(req, res, next) {
   } else {
 
     // if there is no token
-    // return an error
-    return res.json({ success: false, message: 'No token provided.' });
+    // return an HTTP response of 403 (access forbidden) and an error message
+    return res.status(403).send({ success: false, message: 'No token provided.' });
     
   }
 

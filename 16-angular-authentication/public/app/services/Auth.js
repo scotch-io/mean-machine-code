@@ -33,6 +33,10 @@ angular.module('authService', [])
 			return $http.post('/api/logout');
 		},
 
+		isLoggedIn: function() {
+
+		},
+
 		getToken: function() {
 			return $window.localStorage.getItem('token');
 		},
