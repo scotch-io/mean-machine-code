@@ -1,0 +1,11 @@
+{
+  "name": "mean",
+  "main": "server.js",
+  "devDependencies": {
+    "gulp": "^3.8.10",
+    "gulp-uglify": "^1.0.2"
+  },
+  "dependencies": {
+    "express": "^4.10.7"
+  }
+}
