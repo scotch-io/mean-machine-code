@@ -9,6 +9,16 @@ angular.module('userCtrl', ['userService'])
 			vm.users = data;
 		});
 
+	vm.deleteUser = function(id) {
+		User.deleteUser(id)
+			.success(function(data) {
+				User.getUsers()
+					.success(function(data) {
+						vm.users = data;
+					});
+			});
+	};
+
 })
 
 .controller('userCreateController', function(User) {

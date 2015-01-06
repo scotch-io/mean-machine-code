@@ -13,14 +13,14 @@
 		</tr>
 	</thead>
 	<tbody>
-		<tr ng-repeat="user in user.users">
-			<td>{{ user._id }}</td>
-			<td>{{ user.name }}</td>
-			<td>{{ user.username }}</td>
-			<td>{{ user.password }}</td>
+		<tr ng-repeat="person in user.users">
+			<td>{{ person._id }}</td>
+			<td>{{ person.name }}</td>
+			<td>{{ person.personname }}</td>
+			<td>{{ person.password }}</td>
 			<td>
-				<a ng-href="/users/{{ user._id }}" class="btn btn-danger">Edit</a>
-				<a href="#" ng-click="user.deleteUser(user._id)" class="btn btn-primary">Delete</a>
+				<a ng-href="/users/{{ person._id }}" class="btn btn-danger">Edit</a>
+				<a href="#" ng-click="user.deleteUser(person._id)" class="btn btn-primary">Delete</a>
 			</td>
 		</tr>
 	</tbody>

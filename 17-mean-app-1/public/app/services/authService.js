@@ -1,7 +1,9 @@
 angular.module('authService', [])
 
+// ===================================================
 // auth factory to login and get information
 // inject $http for communicating with the API
+// ===================================================
 .factory('Auth', function($http, $window, $q, AuthToken) {
 
 	// create auth factory object
@@ -27,14 +29,10 @@ angular.module('authService', [])
 	};
 
 	authFactory.isLoggedIn = function() {
-		if (AuthToken.getToken()) {
-			console.log('stuff');
+		if (AuthToken.getToken()) 
 			return true;
-		}
-		else {
-			console.log('duh');
-			return false;
-		}
+		else
+			return false;	
 	};
 
 	authFactory.getUser = function() {
@@ -52,8 +50,10 @@ angular.module('authService', [])
 
 })
 
+// ===================================================
 // factory for handling tokens
 // inject $window to store token client-side
+// ===================================================
 .factory('AuthToken', function($window) {
 
 	var authTokenFactory = {};
@@ -76,7 +76,9 @@ angular.module('authService', [])
 
 })
 
+// ===================================================
 // application configuration to integrate token into requests
+// ===================================================
 .factory('AuthInterceptor', function($q, AuthToken) {
 
 	var injector = {
