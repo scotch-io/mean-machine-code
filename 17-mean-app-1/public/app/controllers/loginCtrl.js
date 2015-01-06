@@ -6,7 +6,7 @@ angular.module('loginCtrl', [])
 	this.loginData = {};
 
 	this.doLogin = function() {
-
+		console.log(Auth.login(this.loginData.username, this.loginData.password));
 	};
 
 });
