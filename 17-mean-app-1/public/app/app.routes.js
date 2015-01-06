@@ -6,14 +6,14 @@ angular.module('appRoutes', ['ngRoute'])
 
 		.when('/', {
 			templateUrl : 'app/views/pages/home.html',
-      controller  : 'mainController',
-      controllerAs: 'main'
+    		controller  : 'mainController',
+    		controllerAs: 'main'
 		})
 
 		.when('/login', {
 			templateUrl : 'app/views/pages/login.html',
-      controller  : 'loginController',
-      controllerAs: 'login'
+   			controller  : 'loginController',
+    		controllerAs: 'login'
 		});
 
 	$locationProvider.html5Mode(true);

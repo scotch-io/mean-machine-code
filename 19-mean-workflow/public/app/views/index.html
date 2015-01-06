@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Workflow!</title>
+
+	<!-- CSS -->
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+	<link rel="stylesheet" href="assets/css/style.css">
+
+	<!-- JS / LIBS -->
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-route.js"></script>
+
+	<!-- APP -->
+	<script src="app/controllers/mainCtrl.js"></script>
+	<script src="app/app.routes.js"></script>
+	<script src="app/app.js"></script>
+</head>
+<body class="container" ng-app="myApp" ng-controller="mainController as main">
+
+	<div class="jumbotron text-center">
+		<h1>{{ main.message }}</h1>
+	</div>
+
+	<div ng-view></div>
+	
+</body>
+</html>
