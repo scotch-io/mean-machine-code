@@ -132,8 +132,6 @@ apiRouter.route('/users/:user_id')
 		});
 	});
 
-
-
 // REGISTER OUR ROUTES -------------------------------
 app.use('/api', apiRouter);
 

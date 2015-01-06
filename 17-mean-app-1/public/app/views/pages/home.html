@@ -1,3 +1,8 @@
-<div class="jumbotron">
+<div class="jumbotron text-center">
 	<h1>Welcome to the User CRM!</h1>
+
+	<div ng-if="!main.loggedIn">
+		<p>Login to see manage your users.</p>
+		<a href="/login" class="btn btn-primary">Login</a>
+	</div>
 </div>

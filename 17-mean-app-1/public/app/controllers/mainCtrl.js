@@ -1,19 +1,27 @@
 angular.module('mainCtrl', [])
 
-.controller('mainController', function($http) {
+.controller('mainController', function($http, Auth) {
 
-	this.users = {};
+	var vm = this;
 
-	this.getUsers = function() {
-		$http.get('/api/users')
+	vm.loggedIn = false;
+
+	// function to handle login form
+	vm.doLogin = function() {
+		Auth.login(vm.loginData.username, vm.loginData.password)
 			.success(function(data) {
-
-				this.users = data;
-				this.message = 'hello';
-				console.log(this.users);
-				console.log(data);
-
+				// set the user variable as logged in
+				vm.loggedIn = true;
+				$location.path('/users');
 			});
-	}
+	};
+
+	// handle logging out
+	vm.doLogout = function() {
+		Auth.logout()
+			.success(function(data) {
+				$location.path('/');
+			});
+	};
 
 });

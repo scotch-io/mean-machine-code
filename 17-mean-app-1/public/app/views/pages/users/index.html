@@ -1,0 +1,27 @@
+<div class="page-header">
+	<h1>Users</h1>
+</div>
+
+<table class="table table-bordered table-striped">
+	<thead>
+		<tr>
+			<th>_id</th>
+			<th>Name</th>
+			<th>Username</th>
+			<th>Password</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="user in user.users">
+			<td>{{ user._id }}</td>
+			<td>{{ user.name }}</td>
+			<td>{{ user.username }}</td>
+			<td>{{ user.password }}</td>
+			<td>
+				<a ng-href="/users/{{ user._id }}" class="btn btn-danger">Edit</a>
+				<a href="#" ng-click="user.deleteUser(user._id)" class="btn btn-primary">Delete</a>
+			</td>
+		</tr>
+	</tbody>
+</table>

@@ -2,7 +2,7 @@ angular.module('authService', [])
 
 // auth factory to login and get information
 // inject $http for communicating with the API
-.factory('Auth', function($http, $window) {
+.factory('Auth', function($http, $window, $q, AuthToken) {
 
 	// create auth factory object
 	var authFactory = {};
@@ -15,9 +15,25 @@ angular.module('authService', [])
 			password: password
 		})
 			.success(function(data) {
-				authFactory.setToken(data.token);
+				AuthToken.setToken(data.token);
        			return data;
 			});
+	};
+
+	// log a user out
+	authFactory.logout = function() {
+		// clear the token
+		AuthToken.setToken();
+	};
+
+	authFactory.getUser = function() {
+		if (AuthToken.getToken()) {
+			console.log('success');
+			return $http.get('/api/me');
+		} else {
+			console.log('error');
+			return $q.reject({ message: 'User has no token.' });
+		}
 	};
 
 	// return auth factory object

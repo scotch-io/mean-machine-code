@@ -1,0 +1,34 @@
+<div class="page-header">
+	<h1>Editing User: {{ userShow.user.name }}</h1>
+</div>
+
+<form class="form-horizontal">
+	
+	<div class="form-group">
+		<label class="col-sm-2 control-label">Name</label>
+		<div class="col-sm-6">
+			<input type="text" class="form-control" ng-model="userShow.user.name">
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label class="col-sm-2 control-label">Username</label>
+		<div class="col-sm-6">
+			<input type="text" class="form-control" ng-model="userShow.user.username">
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label class="col-sm-2 control-label">Password</label>
+		<div class="col-sm-6">
+			<input type="password" class="form-control" ng-model="userShow.user.password">
+		</div>
+	</div>
+	
+	<div class="form-group">
+	<div class="col-sm-offset-2 col-sm-6">
+		<button type="submit" class="btn btn-success">Update User</button>
+	</div>
+	</div>
+
+</form>

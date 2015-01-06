@@ -1,12 +1,23 @@
 angular.module('loginCtrl', [])
 
-.controller('loginController', function(Auth) {
+.controller('authController', function($location, Auth) {
 
-	// object to hold login data
-	this.loginData = {};
+	var vm = this;
 
-	this.doLogin = function() {
-		console.log(Auth.login(this.loginData.username, this.loginData.password));
+	// function to handle login form
+	vm.doLogin = function() {
+		Auth.login(vm.loginData.username, vm.loginData.password)
+			.success(function(data) {
+				$location.path('/users');
+			});
+	};
+
+	// handle logging out
+	vm.doLogout = function() {
+		Auth.logout()
+			.success(function(data) {
+				$location.path('/');
+			});
 	};
 
 });

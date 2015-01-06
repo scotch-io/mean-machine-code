@@ -4,11 +4,11 @@ angular.module('app.routes', ['ngRoute'])
 
 	$routeProvider
 
-	.when('/', {
-		templateUrl : 'app/views/pages/home.html',
-		controller  : 'mainController',
-		controllerAs: 'main'
-	});
+		.when('/', {
+			templateUrl : 'app/views/pages/home.html',
+			controller  : 'mainController',
+			controllerAs: 'main'
+		});
 
 	$locationProvider.html5Mode(true);
 });
