@@ -26,6 +26,17 @@ angular.module('authService', [])
 		AuthToken.setToken();
 	};
 
+	authFactory.isLoggedIn = function() {
+		if (AuthToken.getToken()) {
+			console.log('stuff');
+			return true;
+		}
+		else {
+			console.log('duh');
+			return false;
+		}
+	};
+
 	authFactory.getUser = function() {
 		if (AuthToken.getToken()) {
 			console.log('success');
@@ -66,15 +77,21 @@ angular.module('authService', [])
 })
 
 // application configuration to integrate token into requests
-.factory('AuthInterceptor', function(AuthToken) {
+.factory('AuthInterceptor', function($q, AuthToken) {
 
 	var injector = {
 		request: function(config) {
 			var token = AuthToken.getToken();
-			if (token) {
+			if (token) 
 				config.headers['x-access-token'] = token;
-			}
+			
 			return config;
+		},
+		responseError: function(response) {
+			if (response.status == 401 || response.status == 403)
+				$location.path('/login');
+
+			return $q.reject(response);
 		}
 	};
 

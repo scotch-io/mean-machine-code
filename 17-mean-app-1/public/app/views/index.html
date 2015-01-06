@@ -18,6 +18,7 @@
 
 	<!-- controllers -->
 	<script src="app/controllers/mainCtrl.js"></script>
+	<script src="app/controllers/loginCtrl.js"></script>d
 	<script src="app/controllers/userCtrl.js"></script>
 
 	<!-- services -->
@@ -39,8 +40,8 @@
 			<li><a href="/users"><span class="glyphicon glyphicon-user"></span> Users</a></li>
 		</ul>
 		<ul class="nav navbar-nav navbar-right">
-			<li ng-if="main.loggedIn"><a href="/login">Login</a></li>
-			<li ng-if="!main.loggedIn"><a href="#" ng-click="main.doLogout()">Logout</a></li>
+			<li ng-if="!main.loggedIn"><a href="/login">Login</a></li>
+			<li ng-if="main.loggedIn"><a href="#" ng-click="main.doLogout()">Logout</a></li>
 		</ul>
 	</div>
 	</div>
