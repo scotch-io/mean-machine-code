@@ -2,7 +2,6 @@ angular.module('authService', [])
 
 // auth factory to login and get information
 // inject $http for communicating with the API
-// inject $localStorage to store token client-side
 .factory('Auth', function($http, $window) {
 
 	// create auth factory object
@@ -21,13 +20,24 @@ angular.module('authService', [])
 			});
 	};
 
+	// return auth factory object
+	return authFactory;
+
+})
+
+// factory for handling tokens
+// inject $window to store token client-side
+.factory('AuthToken', function($window) {
+
+	var authTokenFactory = {};
+
 	// get the token out of localstorage
-	authFactory.getToken = function() {
+	authTokenFactory.getToken = function() {
 		return $window.localStorage.getItem('token');
 	};
 
 	// function to set token or clear token
-	authFactory.setToken = function(token) {
+	authTokenFactory.setToken = function(token) {
 		if (token) {
 			$window.localStorage.setItem('token', token);
 		} else {
@@ -35,20 +45,23 @@ angular.module('authService', [])
 		}
 	};
 
-	// return auth factory object
-	return authFactory;
+	return authTokenFactory;
 
 })
 
 // application configuration to integrate token into requests
-.factory('AuthInterceptor', function(Auth) {
+.factory('AuthInterceptor', function(AuthToken) {
 
-	return {
+	var injector = {
 		request: function(config) {
-			var token = Auth.getToken();
-			if (token) 
-				config.headers = config.headers || {};
+			var token = AuthToken.getToken();
+			if (token) {
+				config.headers['x-access-token'] = token;
+			}
+			return config;
 		}
 	};
+
+	return injector;
 	
 });
