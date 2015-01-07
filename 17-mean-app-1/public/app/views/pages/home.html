@@ -5,4 +5,9 @@
 		<p>Login to see manage your users.</p>
 		<a href="/login" class="btn btn-primary">Login</a>
 	</div>
+
+	<div ng-if="main.loggedIn">
+		<p>Manage your users.</p>
+		<a href="/users" class="btn btn-primary">View Users</a>
+	</div>
 </div>

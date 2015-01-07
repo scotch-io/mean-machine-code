@@ -31,7 +31,7 @@
 </head>
 <body class="container" ng-app="userApp" ng-controller="mainController as main">
 	
-	<div class="navbar navbar-default">
+	<div class="navbar navbar-default" ng-if="main.loggedIn">
 	<div class="container-fluid">
 		<div class="navbar-header">
 			<a href="/" class="navbar-brand"><span class="glyphicon glyphicon-fire text-danger"></span> User CRM</a>
