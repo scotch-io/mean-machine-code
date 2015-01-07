@@ -3,33 +3,36 @@ angular.module('firstApp', [])
 
 .controller('mainController', function() {
 
-	// define variables and objects on $scope
-	// this lets them be available to our views
+	// bind this to vm (view-model)
+  var vm = this;	
+
+  // define variables and objects on this
+  // this lets them be available to our views
 
 	// define a basic variable
-	this.message = 'Hey there! Come and see how good I look!';
+	vm.message = 'Hey there! Come and see how good I look!';
 
 	// define a list of items
-	this.computers = [
+	vm.computers = [
 		{ name: 'Macbook Pro', color: 'Silver', nerdness: 7 },
 		{ name: 'Yoga 2 Pro', color: 'Gray', nerdness: 6 },
 		{ name: 'Chromebook', color: 'Black', nerdness: 5 }
 	];
 
 	// information that comes from our form
-    this.computerData = {};
+  vm.computerData = {};
 
-    this.addComputer = function() {
-        
-        // add a computer to the list
-        this.computers.push({
-            name: this.computerData.name,
-            color: this.computerData.color,
-            nerdness: this.computerData.nerdness
-        });
+  vm.addComputer = function() {
+      
+      // add a computer to the list
+      vm.computers.push({
+          name: vm.computerData.name,
+          color: vm.computerData.color,
+          nerdness: vm.computerData.nerdness
+      });
 
-        // after our computer has been added, clear the form
-        this.computerData = {};
-    };
+      // after our computer has been added, clear the form
+      vm.computerData = {};
+  };
 
 });

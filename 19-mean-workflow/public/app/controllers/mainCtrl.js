@@ -1,7 +1,6 @@
 angular.module('mainCtrl', [])
 
 .controller('mainController', function() {
-	
-	this.message = 'this is my message!';
-	
+	var vm = this;	
+	vm.message = 'this is my message!';
 });

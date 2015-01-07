@@ -4,22 +4,33 @@ angular.module('routerApp', ['routerRoutes'])
 // this will be the controller for the ENTIRE site
 .controller('mainController', function() {
 
+	var vm = this;
+
     // create a bigMessage variable to display in our view
-    this.bigMessage = 'A smooth sea never made a skilled sailor.';
+    vm.bigMessage = 'A smooth sea never made a skilled sailor.';
 
 })
 
 // home page specific controller
 .controller('homeController', function() {
-	this.message = 'This is the home page!';
+
+	var vm = this;
+
+	vm.message = 'This is the home page!';
 })
 
 // about page controller
 .controller('aboutController', function() {
-    this.message = 'Look! I am an about page.';
+
+	var vm = this;
+
+    vm.message = 'Look! I am an about page.';
 })
 
 // contact page controller
 .controller('contactController', function() {
-    this.message = 'Contact us! JK. This is just a demo.';
+
+	var vm = this;
+
+    vm.message = 'Contact us! JK. This is just a demo.';
 });
