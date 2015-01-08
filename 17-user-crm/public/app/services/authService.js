@@ -3,8 +3,10 @@ angular.module('authService', [])
 // ===================================================
 // auth factory to login and get information
 // inject $http for communicating with the API
+// inject $q to return promise objects
+// inject AuthToken to manage tokens
 // ===================================================
-.factory('Auth', function($http, $window, $q, AuthToken) {
+.factory('Auth', function($http, $q, AuthToken) {
 
 	// create auth factory object
 	var authFactory = {};
@@ -40,13 +42,10 @@ angular.module('authService', [])
 
 	// get the logged in user
 	authFactory.getUser = function() {
-		if (AuthToken.getToken()) {
-			console.log('success');
+		if (AuthToken.getToken())
 			return $http.get('/api/me');
-		} else {
-			console.log('error');
-			return $q.reject({ message: 'User has no token.' });
-		}
+		else
+			return $q.reject({ message: 'User has no token.' });		
 	};
 
 	// return auth factory object
@@ -84,33 +83,34 @@ angular.module('authService', [])
 // ===================================================
 // application configuration to integrate token into requests
 // ===================================================
-.factory('AuthInterceptor', function($q, AuthToken) {
+.factory('AuthInterceptor', function($q, $location, AuthToken) {
 
-	var injector = {
+	var interceptorFactory = {};
 
-		// this will happen on all HTTP requests
-		request: function(config) {
+	// this will happen on all HTTP requests
+	interceptorFactory.request = function(config) {
 
-			// grab the token
-			var token = AuthToken.getToken();
-			if (token) 
-				config.headers['x-access-token'] = token;
-			
-			return config;
-		},
+		// grab the token
+		var token = AuthToken.getToken();
 
-		// happens on response errors
-		responseError: function(response) {
-
-			// if our server returns a 403 forbidden response
-			if (response.status == 403)
-				$location.path('/login');
-
-			// return the errors from the server as a promise
-			return $q.reject(response);
-		}
+		// if the token exists, add it to the header as x-access-token
+		if (token) 
+			config.headers['x-access-token'] = token;
+		
+		return config;
 	};
 
-	return injector;
+	// happens on response errors
+	interceptorFactory.responseError = function(response) {
+
+		// if our server returns a 403 forbidden response
+		if (response.status == 403)
+			$location.path('/login');
+
+		// return the errors from the server as a promise
+		return $q.reject(response);
+	};
+
+	return interceptorFactory;
 	
 });

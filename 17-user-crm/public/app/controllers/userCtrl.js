@@ -85,8 +85,9 @@ angular.module('userCtrl', ['userService'])
 		vm.processing = true;
 
 		// call the userService function to update 
-		User.update(vm.userData)
+		User.update($routeParams.user_id, vm.userData)
 			.success(function(data) {
+				console.log(data);
 				vm.processing = false;
 
 				// clear the form
@@ -94,6 +95,9 @@ angular.module('userCtrl', ['userService'])
 
 				// bind the message from our API to vm.message
 				vm.message = data.message;
+			})
+			.error(function(data) {
+				console.log(data);
 			});
 	}
 
