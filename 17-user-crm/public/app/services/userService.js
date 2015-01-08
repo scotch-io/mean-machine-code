@@ -5,27 +5,32 @@ angular.module('userService', [])
 	var userFactory = {};
 
 	// get a single user
-	userFactory.getUser = function(id) {
+	userFactory.get = function(id) {
 		return $http.get('/api/users/' + id);
 	};
 
 	// get all users
-	userFactory.getUsers = function() {
+	userFactory.all = function() {
 		return $http.get('/api/users/');
 	};
 
 	// create a user
-	userFactory.createUser = function(userData) {
-		return $http.post('/api/users/', userData);
+	userFactory.create = function(userData) {
+		return $http({
+			method: 'POST',
+			url: '/api/users/',
+			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+			data: userData
+		});
 	};
 
 	// update a user
-	userFactory.updateUser = function(id, userData) {
+	userFactory.update = function(id, userData) {
 		return $http.put('/api/users/' + id, userData);
 	};
 
 	// delete a user
-	userFactory.deleteUser = function(id) {
+	userFactory.delete = function(id) {
 		return $http.delete('/api/users/' + id);
 	};
 

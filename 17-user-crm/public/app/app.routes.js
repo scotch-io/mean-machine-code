@@ -15,21 +15,21 @@ angular.module('appRoutes', ['ngRoute'])
 		})
 		
 		.when('/users', {
-			templateUrl: 'app/views/pages/users/index.html',
+			templateUrl: 'app/views/pages/users/all.html',
 			controller: 'userController',
 			controllerAs: 'user'
 		})
 
 		.when('/users/create', {
-			templateUrl: 'app/views/pages/users/create.html',
+			templateUrl: 'app/views/pages/users/single.html',
 			controller: 'userCreateController',
-			controllerAs: 'userCreate'
+			controllerAs: 'userSingle'
 		})
 
 		.when('/users/:user_id', {
-			templateUrl: 'app/views/pages/users/show.html',
+			templateUrl: 'app/views/pages/users/single.html',
 			controller: 'userShowController',
-			controllerAs: 'userShow'
+			controllerAs: 'userSingle'
 		});
 
 	$locationProvider.html5Mode(true);
