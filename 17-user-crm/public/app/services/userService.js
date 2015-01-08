@@ -2,6 +2,7 @@ angular.module('userService', [])
 
 .factory('User', function($http) {
 
+	// create a new object
 	var userFactory = {};
 
 	// get a single user
@@ -29,6 +30,7 @@ angular.module('userService', [])
 		return $http.delete('/api/users/' + id);
 	};
 
+	// return our entire userFactory object
 	return userFactory;
 
 });
