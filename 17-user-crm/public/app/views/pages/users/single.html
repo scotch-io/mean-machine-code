@@ -1,37 +1,46 @@
 <div class="page-header">
-	<h1 ng-if="userSingle.type == 'create'">Create User</h1>
-	<h1 ng-if="userSingle.type == 'edit'">Edit User {{ userSingle.user.name }}</h1>
+	<h1 ng-if="user.type == 'create'">Create User</h1>
+	<h1 ng-if="user.type == 'edit'">Edit User: {{ user.userData.name }}</h1>
 </div>
 
-<form class="form-horizontal" ng-submit="userSingle.createUser()" ng-if="userSingle.type == 'create'">
-<form class="form-horizontal" ng-submit="userSingle.updateUser()" ng-if="userSingle.type == 'edit'">
+<form class="form-horizontal" ng-submit="user.saveUser()">
 	
 	<div class="form-group">
 		<label class="col-sm-2 control-label">Name</label>
 		<div class="col-sm-6">
-			<input type="text" class="form-control" ng-model="userSingle.user.name">
+			<input type="text" class="form-control" ng-model="user.userData.name">
 		</div>
 	</div>
 
 	<div class="form-group">
 		<label class="col-sm-2 control-label">Username</label>
 		<div class="col-sm-6">
-			<input type="text" class="form-control" ng-model="userSingle.user.username">
+			<input type="text" class="form-control" ng-model="user.userData.username">
 		</div>
 	</div>
 
 	<div class="form-group">
 		<label class="col-sm-2 control-label">Password</label>
 		<div class="col-sm-6">
-			<input type="password" class="form-control" ng-model="userSingle.user.password">
+			<input type="password" class="form-control" ng-model="user.userData.password">
 		</div>
 	</div>
 	
 	<div class="form-group">
 	<div class="col-sm-offset-2 col-sm-6">
-		<button type="submit" class="btn btn-success" ng-if="userSingle.type == 'create'">Create User</button>
-		<button type="submit" class="btn btn-success" ng-if="userSingle.type == 'edit'">Update User</button>
+		<button type="submit" class="btn btn-success btn-lg btn-block" ng-if="user.type == 'create'">Create User</button>
+		<button type="submit" class="btn btn-success btn-lg btn-block" ng-if="user.type == 'edit'">Update User</button>
 	</div>
 	</div>
 
 </form>
+
+<div class="row" ng-show="user.message">
+	<div class="col-sm-6 col-sm-offset-2">
+		
+		<div class="alert">
+			{{ user.success }}
+		</div>
+
+	</div>
+</div>

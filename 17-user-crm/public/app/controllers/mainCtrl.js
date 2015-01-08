@@ -4,7 +4,14 @@ angular.module('mainCtrl', [])
 
 	var vm = this;
 
+	// get user information on page load
+	// could also be placed in a .run()
 	vm.loggedIn = Auth.isLoggedIn();
+	Auth.getUser()
+		.then(function(data) {
+			console.log(data);
+			vm.user = data;
+		});
 
 	// function to handle login form
 	vm.doLogin = function() {
@@ -21,12 +28,10 @@ angular.module('mainCtrl', [])
 			});
 	};
 
-	// handle logging out
+	// function to handle logging out
 	vm.doLogout = function() {
-		Auth.logout()	
-			.success(function(data) {
-				$location.path('/');
-			});
+		Auth.logout();
+		$location.path('/');
 	};
 
 });

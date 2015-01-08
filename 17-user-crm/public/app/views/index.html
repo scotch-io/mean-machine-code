@@ -29,7 +29,8 @@
 	<script src="app/app.js"></script>
 </head>
 <body class="container" ng-app="userApp" ng-controller="mainController as main">
-	
+
+	<!-- NAVBAR -->
 	<div class="navbar navbar-default" ng-if="main.loggedIn">
 	<div class="container-fluid">
 		<div class="navbar-header">
@@ -45,6 +46,7 @@
 	</div>
 	</div>
 
+	<!-- ANGULAR VIEWS -->
 	<div ng-view></div>
 
 </body>

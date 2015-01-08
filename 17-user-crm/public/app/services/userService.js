@@ -16,12 +16,7 @@ angular.module('userService', [])
 
 	// create a user
 	userFactory.create = function(userData) {
-		return $http({
-			method: 'POST',
-			url: '/api/users/',
-			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-			data: userData
-		});
+		return $http.post('/api/users/', userData);
 	};
 
 	// update a user

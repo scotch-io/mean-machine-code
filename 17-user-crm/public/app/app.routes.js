@@ -23,13 +23,13 @@ angular.module('appRoutes', ['ngRoute'])
 		.when('/users/create', {
 			templateUrl: 'app/views/pages/users/single.html',
 			controller: 'userCreateController',
-			controllerAs: 'userSingle'
+			controllerAs: 'user'
 		})
 
 		.when('/users/:user_id', {
 			templateUrl: 'app/views/pages/users/single.html',
-			controller: 'userShowController',
-			controllerAs: 'userSingle'
+			controller: 'userEditController',
+			controllerAs: 'user'
 		});
 
 	$locationProvider.html5Mode(true);
