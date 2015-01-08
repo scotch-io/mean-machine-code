@@ -1,14 +1,23 @@
-angular.module('loginCtrl', [])
+angular.module('mainCtrl', [])
 
-.controller('loginController', function($location, Auth) {
+.controller('mainController', function($http, $location, Auth) {
 
 	var vm = this;
 
+	vm.loggedIn = Auth.isLoggedIn();
+
 	// function to handle login form
 	vm.doLogin = function() {
+		vm.processing = true;
+
 		Auth.login(vm.loginData.username, vm.loginData.password)
 			.success(function(data) {
-				$location.path('/users');
+				vm.processing = false;
+
+				if (data.success) 
+					$location.path('/users');
+				else
+					vm.error = data.message;
 			});
 	};
 
