@@ -101,7 +101,13 @@ module.exports = function(app, express) {
 			user.password = req.body.password;  // set the users password (comes from the request)
 
 			user.save(function(err) {
-				if (err) res.send(err);
+				if (err) {
+					// duplicate entry
+					if (err.code == 11000) 
+						return res.json({ success: false, message: 'A user with that username already exists. '});
+					else 
+						return res.send(err);
+				}
 
 				// return a message
 				res.json({ message: 'User created!' });

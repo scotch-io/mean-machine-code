@@ -27,7 +27,7 @@ angular.module('userCtrl', ['userService'])
 
 				// get all users to update the table
 				// you can also set up your api to return the list of users with the delete call
-				User.getUsers()
+				User.all()
 					.success(function(data) {
 						vm.processing = false;
 						vm.users = data;
@@ -50,6 +50,7 @@ angular.module('userCtrl', ['userService'])
 	// function to create a user
 	vm.saveUser = function() {
 		vm.processing = true;
+		vm.message = '';
 
 		// use the create function in the userService
 		User.create(vm.userData)
@@ -83,6 +84,7 @@ angular.module('userCtrl', ['userService'])
 	// function to save the user
 	vm.saveUser = function() {
 		vm.processing = true;
+		vm.message = '';
 
 		// call the userService function to update 
 		User.update($routeParams.user_id, vm.userData)

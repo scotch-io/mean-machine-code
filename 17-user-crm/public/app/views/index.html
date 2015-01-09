@@ -8,13 +8,15 @@
 
 	<!-- CSS  -->
 	<!-- load bootstrap from CDN and custom CSS -->
-	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootswatch/3.3.1/simplex/bootstrap.min.css">
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootswatch/3.3.1/paper/bootstrap.min.css">
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css">
 	<link rel="stylesheet" href="assets/css/style.css">
 
 	<!-- JS -->
 	<!-- load angular and angular-route via CDN -->
 	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.8/angular.min.js"></script>
 	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.8/angular-route.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.8/angular-animate.js"></script>
 
 	<!-- controllers -->
 	<script src="app/controllers/mainCtrl.js"></script>
@@ -28,11 +30,12 @@
 	<script src="app/app.routes.js"></script>
 	<script src="app/app.js"></script>
 </head>
-<body class="container" ng-app="userApp" ng-controller="mainController as main">
+<body ng-app="userApp" ng-controller="mainController as main">
 
-	<!-- NAVBAR -->
-	<div class="navbar navbar-default" ng-if="main.loggedIn">
-	<div class="container-fluid">
+<!-- NAVBAR -->
+<header>
+	<div class="navbar navbar-inverse" ng-if="main.loggedIn">
+	<div class="container">
 		<div class="navbar-header">
 			<a href="/" class="navbar-brand"><span class="glyphicon glyphicon-fire text-danger"></span> User CRM</a>
 		</div>	
@@ -45,9 +48,12 @@
 		</ul>
 	</div>
 	</div>
+</header>
 
+<main class="container">
 	<!-- ANGULAR VIEWS -->
 	<div ng-view></div>
+</main>
 
 </body>
 </html>
