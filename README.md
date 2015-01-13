@@ -4,26 +4,18 @@ Code samples for the JavaScript book: [MEAN Machine](https://leanpub.com/mean-ma
 
 ![MEAN Machine](https://scotch.io/wp-content/uploads/2014/12/mean-machine-page.jpeg)
 
-### License
+## Requirements
 
-The MIT License (MIT)
+- [node and npm](http://nodejs.org/)
+- [nodemon](http://nodemon.io/) - `npm install -g nodemon`
+- [bower](http://bower.io) - `npm install -g bower`
+- [gulp](http://gulpjs.com/) - `npm install -g gulp`
 
-Copyright (c) 2015 scotch.io
+## Installation Instructions
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+Installation instructions will vary for each chapter, but if it is a Node/Angular application (all except chapter 11), the following will apply:
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+1. Install your Node dependencies: `npm install`
+2. Start the application `nodemon server.js`
+3. Visit the application in your browser: [http://localhost:8080](http://localhost:8080)
+4. Enjoy and learn!
