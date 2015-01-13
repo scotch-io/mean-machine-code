@@ -16,7 +16,7 @@ module.exports = function(app, express) {
 	  // find the user
 	  User.findOne({
 	    username: req.body.username
-	  }).select('password').exec(function(err, user) {
+	  }).select('name username password').exec(function(err, user) {
 
 	    if (err) throw err;
 
@@ -33,7 +33,10 @@ module.exports = function(app, express) {
 
 	        // if user is found and password is right
 	        // create a token
-	        var token = jwt.sign(user, superSecret, {
+	        var token = jwt.sign({
+	        	name: user.name,
+	        	username: user.username
+	        }, superSecret, {
 	          expiresInMinutes: 1440 // expires in 24 hours
 	        });
 

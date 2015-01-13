@@ -15,18 +15,27 @@ angular.module('mainCtrl', [])
 	// get user information on page load
 	Auth.getUser()
 		.then(function(data) {
-			console.log(data);
-			vm.user = data;
+			vm.user = data.data;
 		});
 
 	// function to handle login form
 	vm.doLogin = function() {
 		vm.processing = true;
 
+		// clear the error
+		vm.error = '';
+
 		Auth.login(vm.loginData.username, vm.loginData.password)
 			.success(function(data) {
 				vm.processing = false;
 
+				// get user information on page load
+				Auth.getUser()
+					.then(function(data) {
+						vm.user = data.data;
+					});
+
+				// if a user successfully logs in, redirect to users page
 				if (data.success) 
 					$location.path('/users');
 				else
@@ -36,7 +45,6 @@ angular.module('mainCtrl', [])
 
 	// function to handle logging out
 	vm.doLogout = function() {
-		console.log('stuff');	
 		Auth.logout();
 		$location.path('/');
 	};

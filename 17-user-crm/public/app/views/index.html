@@ -2,8 +2,9 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>My MEAN App</title>
+	<title>User CRM</title>
 
+	<!-- FOR ANGULAR ROUTING -->
 	<base href="/">
 
 	<!-- CSS  -->
@@ -44,6 +45,7 @@
 		</ul>
 		<ul class="nav navbar-nav navbar-right">
 			<li ng-if="!main.loggedIn"><a href="/login">Login</a></li>
+			<li ng-if="main.loggedIn" class="navbar-text">Hello {{ main.user.username }}!</li>
 			<li ng-if="main.loggedIn"><a href="#" ng-click="main.doLogout()">Logout</a></li>
 		</ul>
 	</div>

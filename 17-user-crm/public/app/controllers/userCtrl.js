@@ -77,7 +77,6 @@ angular.module('userCtrl', ['userService'])
 	// $routeParams is the way we grab data from the URL
 	User.get($routeParams.user_id)
 		.success(function(data) {
-			console.log(data);
 			vm.userData = data;
 		});
 
@@ -89,7 +88,6 @@ angular.module('userCtrl', ['userService'])
 		// call the userService function to update 
 		User.update($routeParams.user_id, vm.userData)
 			.success(function(data) {
-				console.log(data);
 				vm.processing = false;
 
 				// clear the form
@@ -97,10 +95,7 @@ angular.module('userCtrl', ['userService'])
 
 				// bind the message from our API to vm.message
 				vm.message = data.message;
-			})
-			.error(function(data) {
-				console.log(data);
 			});
-	}
+	};
 
 });
