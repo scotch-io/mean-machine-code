@@ -6,8 +6,8 @@ angular.module('routerApp', ['routerRoutes'])
 
 	var vm = this;
 
-    // create a bigMessage variable to display in our view
-    vm.bigMessage = 'A smooth sea never made a skilled sailor.';
+    	// create a bigMessage variable to display in our view
+    	vm.bigMessage = 'A smooth sea never made a skilled sailor.';
 
 })
 
@@ -24,7 +24,7 @@ angular.module('routerApp', ['routerRoutes'])
 
 	var vm = this;
 
-    vm.message = 'Look! I am an about page.';
+    	vm.message = 'Look! I am an about page.';
 })
 
 // contact page controller
@@ -32,5 +32,5 @@ angular.module('routerApp', ['routerRoutes'])
 
 	var vm = this;
 
-    vm.message = 'Contact us! JK. This is just a demo.';
+    	vm.message = 'Contact us! JK. This is just a demo.';
 });
