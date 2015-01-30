@@ -21,7 +21,7 @@ angular.module('authService', [])
 		})
 			.success(function(data) {
 				AuthToken.setToken(data.token);
-       	return data;
+       			return data;
 			});
 	};
 
@@ -43,7 +43,7 @@ angular.module('authService', [])
 	// get the logged in user
 	authFactory.getUser = function() {
 		if (AuthToken.getToken())
-			return $http.get('/api/me');
+			return $http.get('/api/me', { cache: true });
 		else
 			return $q.reject({ message: 'User has no token.' });		
 	};
@@ -104,8 +104,10 @@ angular.module('authService', [])
 	interceptorFactory.responseError = function(response) {
 
 		// if our server returns a 403 forbidden response
-		if (response.status == 403)
+		if (response.status == 403) {
+			AuthToken.setToken();
 			$location.path('/login');
+		}
 
 		// return the errors from the server as a promise
 		return $q.reject(response);
