@@ -26,7 +26,8 @@ angular.module('userCtrl', ['userService'])
 			.success(function(data) {
 
 				// get all users to update the table
-				// you can also set up your api to return the list of users with the delete call
+				// you can also set up your api 
+				// to return the list of users with the delete call
 				User.all()
 					.success(function(data) {
 						vm.processing = false;

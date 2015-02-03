@@ -22,13 +22,19 @@ module.exports = function(app, express) {
 
 	    // no user with that username was found
 	    if (!user) {
-	      res.json({ success: false, message: 'Authentication failed. User not found.' });
+	      res.json({ 
+	      	success: false, 
+	      	message: 'Authentication failed. User not found.' 
+	    	});
 	    } else if (user) {
 
 	      // check if password matches
 	      var validPassword = user.comparePassword(req.body.password);
 	      if (!validPassword) {
-	        res.json({ success: false, message: 'Authentication failed. Wrong password.' });
+	        res.json({ 
+	        	success: false, 
+	        	message: 'Authentication failed. Wrong password.' 
+	      	});
 	      } else {
 
 	        // if user is found and password is right
@@ -68,7 +74,10 @@ module.exports = function(app, express) {
 	    jwt.verify(token, superSecret, function(err, decoded) {      
 
 	      if (err) {
-	        res.status(403).send({ success: false, message: 'Failed to authenticate token.' });  	   
+	        res.status(403).send({ 
+	        	success: false, 
+	        	message: 'Failed to authenticate token.' 
+	    	});  	   
 	      } else { 
 	        // if everything is good, save to request for use in other routes
 	        req.decoded = decoded;
@@ -81,7 +90,10 @@ module.exports = function(app, express) {
 
 	    // if there is no token
 	    // return an HTTP response of 403 (access forbidden) and an error message
-   	 	res.status(403).send({ success: false, message: 'No token provided.' });
+   	 	res.status(403).send({ 
+   	 		success: false, 
+   	 		message: 'No token provided.' 
+   	 	});
 	    
 	  }
 	});
