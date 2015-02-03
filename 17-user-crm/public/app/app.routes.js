@@ -13,7 +13,7 @@ angular.module('app.routes', ['ngRoute'])
 		.when('/login', {
 			templateUrl : 'app/views/pages/login.html',
    			controller  : 'mainController',
-    		controllerAs: 'login'
+    			controllerAs: 'login'
 		})
 		
 		// show all users
