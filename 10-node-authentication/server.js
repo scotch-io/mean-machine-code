@@ -111,6 +111,7 @@ apiRouter.use(function(req, res, next) {
       else
         // if everything is good, save to request for use in other routes
         req.decoded = decoded;    
+      next(); // make sure we go to the next routes and don't stop here
     });
 
   } else {
@@ -123,8 +124,6 @@ apiRouter.use(function(req, res, next) {
     });
     
   }
-
-  next(); // make sure we go to the next routes and don't stop here
 });
 
 // test route to make sure everything is working 
