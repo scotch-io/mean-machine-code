@@ -23,10 +23,7 @@ gulp.task('css', function() {
 gulp.task('js', function() {
   return gulp.src(['server.js', 'public/app/*.js', 'public/app/**/*.js'])
     .pipe(jshint())
-    .pipe(jshint.reporter('default'))
-    .pipe(uglify())
-    .pipe(concat())
-    .pipe(gulp.dest('/public/dist'));
+    .pipe(jshint.reporter('default'));
 });
 
 gulp.task('scripts', function() {
