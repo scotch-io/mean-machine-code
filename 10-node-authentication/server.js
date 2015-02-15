@@ -106,12 +106,13 @@ apiRouter.use(function(req, res, next) {
 
     // verifies secret and checks exp
     jwt.verify(token, superSecret, function(err, decoded) {      
-      if (err)
-        return res.json({ success: false, message: 'Failed to authenticate token.' });    
-      else
+      if (err) {
+        return res.json({ success: false, message: 'Failed to authenticate token.' });   
+      } else {
         // if everything is good, save to request for use in other routes
         req.decoded = decoded;    
-      next(); // make sure we go to the next routes and don't stop here
+        next(); // make sure we go to the next routes and don't stop here
+      }
     });
 
   } else {

@@ -19,13 +19,14 @@ gulp.task('css', function() {
     .pipe(gulp.dest('public/assets/css'));
 });
 
-// task for js files
+// task for linting js files
 gulp.task('js', function() {
   return gulp.src(['server.js', 'public/app/*.js', 'public/app/**/*.js'])
     .pipe(jshint())
     .pipe(jshint.reporter('default'));
 });
 
+// task to lint, minify, and concat frontend files
 gulp.task('scripts', function() {
   return gulp.src(['public/app/*.js', 'public/app/**/*.js'])
     .pipe(jshint())
@@ -35,6 +36,7 @@ gulp.task('scripts', function() {
     .pipe(gulp.dest('public/dist'));
 });
 
+// task to lint, minify, and concat frontend angular files
 gulp.task('angular', function() {
   return gulp.src(['public/app/*.js', 'public/app/**/*.js'])
     .pipe(jshint())
