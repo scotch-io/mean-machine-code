@@ -27,11 +27,11 @@ app.use(function(req, res, next) {
 	next();
 });
 
-// log all requests to the console 
+// log all requests to the console
 app.use(morgan('dev'));
 
 // connect to our database (hosted on modulus.io)
-mongoose.connect('mongodb://node:noder@novus.modulusmongo.net:27017/Iganiq8o'); 
+mongoose.connect('mongodb://node:noder@novus.modulusmongo.net:27017/Iganiq8o');
 
 // ROUTES FOR OUR API
 // ======================================
@@ -56,18 +56,18 @@ apiRouter.post('/authenticate', function(req, res) {
 
     // no user with that username was found
     if (!user) {
-      res.json({ 
-        success: false, 
-        message: 'Authentication failed. User not found.' 
+      res.json({
+        success: false,
+        message: 'Authentication failed. User not found.'
       });
     } else if (user) {
 
       // check if password matches
       var validPassword = user.comparePassword(req.body.password);
       if (!validPassword) {
-        res.json({ 
-          success: false, 
-          message: 'Authentication failed. Wrong password.' 
+        res.json({
+          success: false,
+          message: 'Authentication failed. Wrong password.'
         });
       } else {
 
@@ -77,7 +77,7 @@ apiRouter.post('/authenticate', function(req, res) {
         	name: user.name,
         	username: user.username
         }, superSecret, {
-          expiresInMinutes: 1440 // expires in 24 hours
+          expiresIn: '24h' // expires in 24 hours
         });
 
         // return the information including token as JSON
@@ -86,7 +86,7 @@ apiRouter.post('/authenticate', function(req, res) {
           message: 'Enjoy your token!',
           token: token
         });
-      }   
+      }
 
     }
 
@@ -105,12 +105,12 @@ apiRouter.use(function(req, res, next) {
   if (token) {
 
     // verifies secret and checks exp
-    jwt.verify(token, superSecret, function(err, decoded) {      
+    jwt.verify(token, superSecret, function(err, decoded) {
       if (err) {
-        return res.json({ success: false, message: 'Failed to authenticate token.' });   
+        return res.json({ success: false, message: 'Failed to authenticate token.' });
       } else {
         // if everything is good, save to request for use in other routes
-        req.decoded = decoded;    
+        req.decoded = decoded;
         next(); // make sure we go to the next routes and don't stop here
       }
     });
@@ -119,18 +119,18 @@ apiRouter.use(function(req, res, next) {
 
     // if there is no token
     // return an HTTP response of 403 (access forbidden) and an error message
-    return res.status(403).send({ 
-      success: false, 
-      message: 'No token provided.' 
+    return res.status(403).send({
+      success: false,
+      message: 'No token provided.'
     });
-    
+
   }
 });
 
-// test route to make sure everything is working 
+// test route to make sure everything is working
 // accessed at GET http://localhost:8080/api
 apiRouter.get('/', function(req, res) {
-	res.json({ message: 'hooray! welcome to our api!' });	
+	res.json({ message: 'hooray! welcome to our api!' });
 });
 
 // on routes that end in /users
@@ -139,7 +139,7 @@ apiRouter.route('/users')
 
 	// create a user (accessed at POST http://localhost:8080/users)
 	.post(function(req, res) {
-		
+
 		var user = new User();		// create a new instance of the User model
 		user.name = req.body.name;  // set the users name (comes from the request)
 		user.username = req.body.username;  // set the users username (comes from the request)
@@ -148,9 +148,9 @@ apiRouter.route('/users')
 		user.save(function(err) {
 			if (err) {
 				// duplicate entry
-				if (err.code == 11000) 
+				if (err.code == 11000)
 					return res.json({ success: false, message: 'A user with that username already exists. '});
-				else 
+				else
 					return res.send(err);
 			}
 

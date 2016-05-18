@@ -2,6 +2,6 @@
   "name": "routing-app",
   "main": "server.js",
   "dependencies": {
-    "express": "~4.9.1"
+    "express": "~4.13.4"
   }
 }
