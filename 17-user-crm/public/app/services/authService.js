@@ -19,7 +19,7 @@ angular.module('authService', [])
 			username: username,
 			password: password
 		})
-			.success(function(data) {
+			.then(function(data) {
 				AuthToken.setToken(data.token);
        			return data;
 			});
