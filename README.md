@@ -19,3 +19,7 @@ Installation instructions will vary for each chapter, but if it is a Node/Angula
 2. Start the application `nodemon server.js`
 3. Visit the application in your browser: [http://localhost:8080](http://localhost:8080)
 4. Enjoy and learn!
+
+## Notice
+
+We work hard to keep the code samples updated with the evolution of technologies mentioned in the book. If you find anything that does not work because of, for example, the usage of a newer and better version of a dependency, please let us know.
